@@ -1,0 +1,5 @@
+# Ignore everything except relevant files
+*
+!.docker/
+!.docker/php/entrypoint.sh
+!app/
