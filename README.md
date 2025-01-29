@@ -38,6 +38,7 @@ Before you begin, ensure you have the following installed:
 ```sh
 git clone https://github.com/your-repo.git
 cd your-repo
+```
 
 
 ### **2️⃣ Configure .env File** 
