@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:10.5  # Replace MySQL with the MariaDB image
+    container_name: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpassword  # Root password for MariaDB
+      MARIADB_DATABASE: laravel            # Default database to create
+      MARIADB_USER: admin                  # Non-root user
+      MARIADB_PASSWORD: password           # Password for non-root user
+    ports:
+      - "3306:3306"                        # Expose port 3306
+    volumes:
+      - mariadb_data:/var/lib/mysql        # Persistent data storage
+      - ./backup:/backup                   # Backup directory
+    networks:
+      app_network:                         # Shared network
+        aliases:
+          - mariadb                       # Alias for hostname resolution
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mariadb                   # Hostname of the MariaDB service
+      PMA_PORT: 3306                      # Port for MariaDB
+    ports:
+      - "8080:80"                         # Access phpMyAdmin at http://localhost:8080
+    networks:
+      app_network:                        # Shared network
+        aliases:
+          - phpmyadmin
+
+networks:
+  app_network:                            # Define the application network
+    driver: bridge
+
+volumes:
+  mariadb_data:                           # Persistent volume for MariaDB
