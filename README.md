@@ -42,15 +42,17 @@ cd your-repo
 
 
 ### **2️⃣ Configure .env File** 
+```sh
 cp .env.example .env
-
+```
+```sh
 APP_URL=http://localhost:8000
 DB_HOST=mariadb
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=admin
 DB_PASSWORD=password
-
+```
 ### **3️⃣ Build & Start Containers** 
 docker-compose up -d --build
 ✅ This will:
@@ -63,16 +65,22 @@ docker-compose up -d --build
 ### **4️⃣ Verify Setup** 
 📌 Available Commands
 🚀 Start the Project
-- docker-compose up -d
-
+```sh 
+docker-compose up -d
+```
 🛑 Stop the Project
-- docker-compose down
-
+```sh 
+docker-compose down
+```
 ♻️ Restart Containers
-- docker-compose restart
-
+```sh 
+docker-compose restart
+```
 🛠 Access Laravel Container
-- docker exec -it app bash
-
+```sh 
+docker exec -it app bash
+```
 📜 Run Laravel Migrations
+```sh 
 - docker exec -it app php artisan migrate --force
+```
